@@ -1,24 +1,27 @@
-[tool.poetry]
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+dev = ["pre-commit<2.0,>=1.18"]
+
+[tool.pdm.build]
+includes = []
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
 name = "cmus-osx"
 version = "3.0.6"
+authors = [{ name = "Philip Trauner", email = "philip.trauner@arztpraxis.io" }]
 description = "Adds track change notifications, and media key support to cmus."
-authors = ["Philip Trauner <philip.trauner@arztpraxis.io>"]
-license = "MIT"
 readme = "README.md"
+license = { text = "MIT" }
+requires-python = "<4.0,>=3.9"
+dependencies = [
+    "mutagen<2.0,>=1.42",
+    "pyobjc>=10.3.1",
+    "click<8.0,>=7.0",
+    "Pillow<9.0,>=8.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.7"
-mutagen = "^1.42"
-pyobjc = "^6.2"
-click = "^7.0"
-Pillow = "^8.0"
-
-[tool.poetry.dev-dependencies]
-pre-commit = "^1.18"
-
-[tool.poetry.scripts]
+[project.scripts]
 cmus-osx = "cmus_osx:entrypoint"
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
